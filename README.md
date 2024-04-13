@@ -16,6 +16,15 @@ Command interpreter is a shell like with limited to a specific use-case. It can 
 * Language: Python3
 * OS: Ubuntu 20.04 LTS
 
+### Environment Variables
+
++ `HBNB_ENV`: The running environment. It can be `dev` or `test`.
++ `HBNB_MYSQL_USER`: The MySQL server username.
++ `HBNB_MYSQL_PWD`: The MySQL server password.
++ `HBNB_MYSQL_HOST`: The MySQL server hostname.
++ `HBNB_MYSQL_DB`: The MySQL server database name.
++ `HBNB_TYPE_STORAGE`: The type of storage used. It can be `file` (using `FileStorage`) or `db` (using `DBStorage`).
+
 ### General Use
 To start the command interpreter, follow these steps:
 - Clone the project repository to your local machine and Navigate to the directory that contain the file.
@@ -67,7 +76,6 @@ EOF  help  quit
 $
 ```
 
-
 ##### Commands
     * create - Creates an instance based on given class
 
@@ -97,6 +105,20 @@ Advanced syntax is implemented for the following commands:
 	* destroy - Destroys an object based on class and UUID
 
     * update - Updates existing attributes an object based on class name and UUID
+
+### Available Models
+
+These are the models that are currently available.
+
+| Class | Description |
+|:-|:-|
+| BaseModel | A(n abstract) class that represents the base class for all models (all models are instances of this class). |
+| User | Represents a user account. |
+| State | Represents the geographical state in which a _User_ lives or a _City_ belongs to. |
+| City | Represents an urban area in a _State_. |
+| Amenity | Represents a useful feature of a _Place_. |
+| Place | Represents a building containing rooms that can be rented by a _User_. |
+| Review | Represents a review of a _Place_. |
 
 <br>
 <br>
@@ -173,7 +195,6 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 (hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
 ```
 <br>
-
 ## Testing
 Within the project, we have incorporated unit tests to verify the accuracy of the implemented functionality. To execute these tests, follow the instructions below:
 - "python3 -m unittest discover tests" (interactive mode)
