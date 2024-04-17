@@ -51,7 +51,7 @@ class TestBasemodel(unittest.TestCase):
         self.assertFalse(new is i)
 
     def test_kwargs_int(self):
-A        """Checks kwargs with an int"""
+        """Checks kwargs with an int"""
         i = self.value()
         copy = i.to_dict()
         copy.update({1: 2})
@@ -59,7 +59,7 @@ A        """Checks kwargs with an int"""
             new = BaseModel(**copy)
 
     @unittest.skipIf(
-        os.getenv('HBNB_TYPE_STORAGE') == 'db', 'FileStorage test')
+            os.getenv('HBNB_TYPE_STORAGE') == 'db', 'FileStorage test')
     def test_save(self):
         """Checks the save function of the BaseModel class"""
         i = self.value()
