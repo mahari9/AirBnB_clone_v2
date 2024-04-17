@@ -1,4 +1,20 @@
+#!/usr/bin/python3
+""" Module for testing file storage"""
+import MySQLdb
+import os
+import unittest
+from datetime import datetime
+from models import storage
+from models.user import User
 
+
+@unittest.skipIf(
+    os.getenv('HBNB_TYPE_STORAGE') != 'db', 'DBStorage test')
+class TestDBStorage(unittest.TestCase):
+    """ Class to test the database storage method """
+    def test_new(self):
+        """ New object is correctly added to database """
+        new = User(
             email='mhr@gmail.com',
             password='password',
             first_name='Mahari',

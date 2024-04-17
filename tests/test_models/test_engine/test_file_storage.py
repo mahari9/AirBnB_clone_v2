@@ -111,4 +111,4 @@ class TestFileStorage(unittest.TestCase):
     def test_storage_var_created(self):
         """ Checks FileStorage object storage creation """
         from models.engine.file_storage import FileStorage
-i        self.assertEqual(type(storage), FileStorage)
+        self.assertEqual(type(storage), FileStorage)
