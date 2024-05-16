@@ -13,7 +13,7 @@ import unittest
 storage_t = getenv("HBNB_TYPE_STORAGE")
 
 
-class test_Amenity(test_basemodel):
+class test_Amenity(TestBasemodel):
     """ """
 
     def __init__(self, *args, **kwargs):
