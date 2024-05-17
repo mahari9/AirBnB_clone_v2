@@ -7,13 +7,13 @@ app = Flask(__name__)
 """The Flask application instance."""
 
 
-@app.route("/", strict_slashes = False)
+@app.route("/", strict_slashes=False)
 def index():
     """The home page."""
     return 'Hello HBNB!'
 
 
-@app.route("/hbnb", strict_slashes = False)
+@app.route("/hbnb", strict_slashes=False)
 def hbnb():
     """The hbnb page."""
     return 'HBNB'
