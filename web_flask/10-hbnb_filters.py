@@ -1,20 +1,28 @@
 #!/usr/bin/python3
 """script that starts a Flask web application"""
-from models import storage
 from flask import Flask, render_template
+
+from models import storage
+from models.amenity import Amenity
+from models.state import State
 
 app = Flask(__name__)
 
 
 @app.route("/hbnb_filters", strict_slashes=False)
 def hbnb_filters():
-    """The HBNB filter page."""
-    states = storage.all("State")
-    amenities = storage.all("Amenity")
-    return render_template("10-hbnb_filters.html",
-                           states=states, amenities=amenities)
-
-
+    """The hbnb_filters page."""
+    all_states = list(storage.all(State).values())
+    amenities = list(storage.all(Amenity).values())
+    all_states.sort(key=lambda x: x.name)
+    amenities.sort(key=lambda x: x.name)
+    for state in all_states:
+        state.cities.sort(key=lambda x: x.name)
+    ctxt = {
+        'states': all_states,
+        'amenities': amenities
+    }
+    return render_template('10-hbnb_filters.html', **ctxt)
 @app.teardown_appcontext
 def teardown(exc):
     """The Flask app/request context end event listener."""
@@ -22,4 +30,4 @@ def teardown(exc):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host='0.0.0.0', port='5000')

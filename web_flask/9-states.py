@@ -3,23 +3,37 @@
 from models import storage
 from flask import Flask, render_template
 
+from models.state import State
+
 app = Flask(__name__)
 
 
 @app.route("/states", strict_slashes=False)
-def states():
-    """The states page."""
-    states = storage.all("State")
-    return render_template("9-states.html", state=states)
-
-
 @app.route("/states/<id>", strict_slashes=False)
-def states_id(id):
-    """The states page with id info"""
-    for state in storage.all("State").values():
-        if state.id == id:
-            return render_template("9-states.html", state=state)
-    return render_template("9-states.html")
+def states(id=None):
+    """The states page."""
+    states = None
+    state = None
+    all_states = list(storage.all(State).values())
+    case = 404
+    if id is not None:
+        res = list(filter(lambda x: x.id == id, all_states))
+        if len(res) > 0:
+            state = res[0]
+            state.cities.sort(key=lambda x: x.name)
+            case = 2
+    else:
+        states = all_states
+        for state in states:
+            state.cities.sort(key=lambda x: x.name)
+        states.sort(key=lambda x: x.name)
+        case = 1
+    ctxt = {
+        'states': states,
+        'state': state,
+        'case': case
+    }
+    return render_template('9-states.html', **ctxt)
 
 
 @app.teardown_appcontext
@@ -29,4 +43,4 @@ def teardown(exc):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host='0.0.0.0', port='5000')
