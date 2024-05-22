@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""script that starts a Flask web application"""
+"""Script that starts a Flask web application"""
 from flask import Flask, render_template
 
 from models import storage
@@ -11,12 +11,8 @@ app = Flask(__name__)
 @app.route("/states_list", strict_slashes=False)
 def states_list():
     """The states_list page."""
-    all_states = list(storage.all(State).values())
-    all_states.sort(key=lambda x: x.name)
-    ctxt = {
-        'states': all_states
-    }
-    return render_template('7-states_list.html', **ctxt)
+    states = storage.all(State)
+    return render_template('7-states_list.html', states=states)
 
 
 @app.teardown_appcontext
