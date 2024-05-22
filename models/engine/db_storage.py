@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """This module defines a database storage for hbnb clone"""
-from os import getenv
+import os
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import (create_engine)
 from sqlalchemy.ext.declarative import declarative_base
