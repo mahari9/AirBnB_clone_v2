@@ -1,23 +1,19 @@
 #!/usr/bin/python3
-"""This module contains unit tests for the state class."""
-import os
-
-from tests.test_models.test_base_model import TestBasemodel
+"""Unit test for state model """
+from tests.test_models.test_base_model import test_basemodel
 from models.state import State
 
 
-class TestState(TestBasemodel):
-    """TestState class for testing the state model."""
+class test_state(test_basemodel):
+    """state class test """
+
     def __init__(self, *args, **kwargs):
-        """Initializes the test class."""
+        """ """
         super().__init__(*args, **kwargs)
         self.name = "State"
         self.value = State
 
     def test_name3(self):
-        """Tests the name attribute."""
+        """test for name"""
         new = self.value()
-        self.assertEqual(
-            type(new.name),
-            str if os.getenv('HBNB_TYPE_STORAGE') != 'db' else type(None)
-        )
+        self.assertEqual(type(new.name), str)
