@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Unit tests for city model """
 from tests.test_models.test_base_model import test_basemodel
+import unittest
 from models.city import City
 import pycodestyle
 

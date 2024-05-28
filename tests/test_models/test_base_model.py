@@ -6,7 +6,7 @@ import datetime
 from uuid import UUID
 import json
 import os
-import pycodestyle
+import pep8 as pycodestyle
 
 
 class test_basemodel(unittest.TestCase):
@@ -84,12 +84,6 @@ class test_basemodel(unittest.TestCase):
         n = {None: None}
         with self.assertRaises(TypeError):
             new = self.value(**n)
-
-    # def test_kwargs_one(self):
-    #     """ """
-    #     n = {'Name': 'test'}
-    #     with self.assertRaises(KeyError):
-    #         new = self.value(**n)
 
     def test_id(self):
         """ """
@@ -184,7 +178,7 @@ class TestBaseModel(unittest.TestCase):
 
     def test_pep8_BaseModel(self):
         """Testing for pep8"""
-        style = pep8.StyleGuide(quiet=True)
+        style = pycodestyle.StyleGuide(quiet=True)
         p = style.check_files(['models/base_model.py'])
         self.assertEqual(p.total_errors, 0, "fix pep8")
 
